@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: recommender
+  ai:
+    openai:
+      api-key: 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
+      chat:
+        options:
+          model: gpt-4o-mini
+  cache:
+    type: caffeine
+    cache-names: musicRecommendations
+    caffeine:
+      spec: maximumSize=100,expireAfterWrite=10m
+  mvc:
+    static-path-pattern: /static/**
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false  # Disable the default ugly Whitelabel page
+    include-message: always
+    include-binding-errors: always
+  servlet:
+    context-path: /

@@ -1,0 +1,10 @@
+spring:
+  ai:
+    openai:
+      api-key: dummy-test-key
+      chat:
+        options:
+          model: gpt-4o-mini
+logging:
+  level:
+    org.springframework.cache: DEBUG

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>🎵 AI Music Recommender</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f6f6f6; }
+        form { margin-bottom: 20px; }
+        input[type=text], input[type=number] { padding: 8px; }
+        input[type=text] { width: 60%; }
+        input[type=number] { width: 80px; }
+        button { padding: 8px 16px; }
+        pre { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+<h1>🎶 AI Music Recommender</h1>
+<form action="/recommend" method="post">
+    <input type="text" name="prompt" placeholder="Describe your mood or situation..." required />
+    <input type="number" name="count" min="1" max="10" value="5" required />
+    <button type="submit">Get Albums</button>
+</form>
+
+<div th:if="${recommendations}">
+    <h2>Showing <span th:text="${count}"></span> albums for: "<span th:text="${prompt}"></span>"</h2>
+    <pre th:text="${recommendations}"></pre>
+</div>
+</body>
+</html>
