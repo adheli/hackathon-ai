@@ -56,7 +56,6 @@ mvn test
 
 | Test Class | Purpose |
 |-------------|----------|
-| `MusicServiceTest` | Validates recommendation logic |
 | `MusicServiceCacheTest` | Ensures caching avoids redundant AI calls |
 
 ---
@@ -82,7 +81,6 @@ mvn test
 - Cache key: `prompt + "_" + count`
 - Expiration: **10 minutes**
 - Maximum entries: **100**
-- Configuration: in [`CacheConfig.java`](src/main/java/com/tavares/recommender/config/CacheConfig.java)
 
 Example YAML configuration:
 
