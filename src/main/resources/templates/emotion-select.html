@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>Select Emotion</title></head>
+<body>
+<h2>Select the emotion that best matches how you feel:</h2>
+
+<form action="/flow/choose" method="post">
+    <div>
+        <ul>
+            <li th:each="emotion : ${emotions}">
+                <button type="submit" name="emotion" th:value="${emotion}" th:text="${emotion}"></button>
+            </li>
+        </ul>
+    </div>
+</form>
+</body>
+</html>

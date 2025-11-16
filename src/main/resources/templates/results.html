@@ -1,0 +1,12 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>Recommendations</title></head>
+<body>
+<h2 th:text="'Recommendations for emotion: ' + ${emotion}"></h2>
+
+<pre th:text="${results}"></pre>
+
+<a href="/">Start Over</a>
+</body>
+</html>

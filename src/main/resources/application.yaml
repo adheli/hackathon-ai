@@ -3,13 +3,13 @@ spring:
     name: recommender
   ai:
     openai:
-      api-key: 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
+      api-key: ${OPENAI_API_KEY}
       chat:
         options:
           model: gpt-4o-mini
   cache:
     type: caffeine
-    cache-names: musicRecommendations
+    cache-names: musicRecommendations, oldMusicRecommendations
     caffeine:
       spec: maximumSize=100,expireAfterWrite=10m
   mvc:

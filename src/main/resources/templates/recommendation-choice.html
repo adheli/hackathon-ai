@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>Choose Recommendation Type</title></head>
+<body>
+<h2 th:text="'Emotion selected: ' + ${emotion}"></h2>
+
+<form action="/flow/recommend" method="post">
+    <input type="hidden" name="emotion" th:value="${emotion}" />
+
+    <button type="submit" name="type" value="songs">Recommend Songs</button>
+    <button type="submit" name="type" value="albums">Recommend Albums</button>
+</form>
+</body>
+</html>
