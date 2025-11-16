@@ -1,3 +1,17 @@
+# 🎧 Welcome to Your Mood-Based Music Companion!
+
+This little app is designed to help you discover music that truly matches how you feel.
+Just tell it what’s going on — a sentence, a thought, a vibe — and the AI will read the mood behind your words and
+suggest emotions that might fit.
+
+Pick the emotion that feels right, choose whether you want songs or albums, and you’ll get a curated list of
+recommendations tailored to your emotional moment.
+
+It’s simple, personal, and a fun way to explore music you might’ve never found otherwise.
+Whether you’re feeling on top of the world or a bit lost in your thoughts, there’s a soundtrack waiting for you. 🎶💛
+
+---
+
 # 🎵 AI Music Recommender
 
 A **Spring Boot** web application that uses **Spring AI (ChatGPT)** to suggest music albums based on a user’s text prompt.  
