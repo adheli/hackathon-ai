@@ -12,7 +12,7 @@ Whether you’re feeling on top of the world or a bit lost in your thoughts, the
 
 ---
 
-# 🎵 AI Music Recommender
+# 🎵 MoodTunes
 
 A **Spring Boot** web application that uses **Spring AI (ChatGPT)** to suggest music albums based on a user’s text prompt.  
 The app provides a simple web interface where users can enter a mood, genre, or activity (e.g., “chill evening” or “energetic workout”), and receive a list of recommended albums.
@@ -76,16 +76,14 @@ mvn test
 
 ## 🧠 How It Works
 
-1. The user enters a **prompt** (e.g., “chill evening”, “happy mood”, “focus study”) in the web interface.
-2. The `MusicController` sends this to the `MusicService`.
-3. The service builds a structured prompt for ChatGPT, for example:
-   ```
-   You are a helpful music recommendation assistant.
-   Suggest 5 music albums that fit: chill evening.
-   ```
+1. The user enters a **prompt** that describes how they're feeling in the web interface.
+2. The `MusicController` sends this to the `MoodAnalysisService`.
+3. The service builds a structured prompt for ChatGPT
 4. The prompt is processed by **Spring AI’s ChatClient**, which calls **OpenAI’s GPT model**.
-5. The generated list of albums is returned to the web page.
-6. The response is **cached** (via Caffeine) for faster reuse on similar prompts.
+5. The user selects from the short list of emotions returned, and picks from songs or albums
+6. The `MusicController` sends this to the `MusicService`.
+7. The generated list of albums or songs is returned to the web page.
+8. The response is **cached** (via Caffeine) for faster reuse on similar prompts.
 
 ---
 
@@ -115,17 +113,6 @@ If something goes wrong (e.g., the AI API fails), users see a friendly **Thymele
 
 - Template: [`error.html`](src/main/resources/templates/error.html)
 - Handled by a custom exception handler in the controller layer.
-
----
-
-## 🧩 Example Usage
-
-| Prompt | Example Output |
-|---------|----------------|
-| `happy mood` | 5 upbeat pop or indie albums |
-| `rainy day jazz` | 5 relaxing jazz albums |
-| `focus study` | 5 lo-fi / ambient albums |
-| `workout motivation` | 5 energetic rock or electronic albums |
 
 ---
 
