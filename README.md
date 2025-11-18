@@ -159,18 +159,6 @@ Or with docker-compose:
 docker-compose up --build
 ```
 
-## CI
-
-A GitHub Actions workflow `.github/workflows/ci.yml` has been added to build and test the project on push/PR.
-
-## Note about legacy endpoint
-The old `/recommend` legacy endpoint has been removed in favor of the new multi-step flow under `/flow`:
-- POST `/flow/analyze` — analyze mood description and return emotions
-- POST `/flow/choose` — user chooses an emotion
-- POST `/flow/recommend` — request recommendations (albums or songs)
-
-If you need to keep backward compatibility, we can reintroduce a shim that maps the old behavior to the new services.
-
 
 ## Stateless API flow (for SPA compatibility)
 
@@ -180,19 +168,3 @@ This project exposes a stateless JSON API:
 - `POST /api/recommend` — accepts `{ "moodText":"...", "emotion":"...", "mediaType":"SONGS|ALBUMS" }` and returns `{ "items":[...], "raw":"..." }`
 
 Frontend (Thymeleaf or SPA) sends the mood text and chosen emotion/mediaType — backend keeps no session state.
-
-## Docker & CI
-
-A `Dockerfile`, `docker-compose.yml`, and GitHub Actions workflow were added. Build with:
-
-```
-docker build -t ai-music-recommender .
-docker run -e OPENAI_API_KEY="${OPENAI_API_KEY}" -p 8080:8080 ai-music-recommender
-```
-
-Or run tests locally:
-
-```
-mvn -DskipTests package
-mvn test
-```
