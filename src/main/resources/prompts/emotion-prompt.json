@@ -3,13 +3,12 @@
   "tone": "calm, analytical",
   "instructions": [
     "Read the user's mood description.",
-    "Extract 3 to 6 possible emotions.",
-    "Return only a comma-separated list."
+    "Analyze the feelings and emotions.",
+    "Extract 6 possible emotions."
   ],
   "rules": [
     "No explanations.",
-    "No sentences.",
-    "Just the emotion list."
+    "No sentences."
   ],
   "input format": "free text description of feelings",
   "examples": [
