@@ -51,10 +51,14 @@ It also uses **Spring Caching (Caffeine)** to cache AI responses for faster repe
    java -jar target/recommender-0.0.1-SNAPSHOT.jar
    ```
 
-4. **Open the app in your browser**
-   ```
-   http://localhost:8080
-   ```
+4. **Call the stateless JSON API**
+
+   The backend exposes REST endpoints rather than serving a web UI:
+
+   - `POST http://localhost:8080/api/analyze` with body `{ "moodText": "..." }` returns a list of suggested emotions.
+   - `POST http://localhost:8080/api/recommend` with body `{ "emotion": "...", "mediaType": "SONGS|ALBUMS" }` returns recommendations.
+
+   You can connect any frontend or API client (e.g., Postman, curl, or an SPA) to these endpoints.
 
 ---
 
@@ -70,18 +74,20 @@ mvn test
 
 | Test Class | Purpose |
 |-------------|----------|
-| `MusicServiceCacheTest` | Ensures caching avoids redundant AI calls |
+| `ApiControllerTest` | Verifies JSON endpoints and happy‑path responses |
+| `MusicServiceIntegrationTest` | Confirms Spring AI prompt/response flow for recommendations |
+| `MoodAnalysisIntegrationTest` | Confirms Spring AI prompt/response flow for emotion extraction |
 
 ---
 
 ## 🧠 How It Works
 
 1. The user enters a **prompt** that describes how they're feeling in the web interface.
-2. The `MusicController` sends this to the `MoodAnalysisService`.
+2. The `ApiController` receives the request and delegates to `MoodAnalysisService`.
 3. The service builds a structured prompt for ChatGPT
 4. The prompt is processed by **Spring AI’s ChatClient**, which calls **OpenAI’s GPT model**.
 5. The user selects from the short list of emotions returned, and picks from songs or albums
-6. The `MusicController` sends this to the `MusicService`.
+6. The `ApiController` forwards the user’s selection to the `MusicService`.
 7. The generated list of albums or songs is returned to the web page.
 8. The response is **cached** (via Caffeine) for faster reuse on similar prompts.
 
@@ -90,7 +96,7 @@ mvn test
 ## 💾 Caching Behavior
 
 - Uses **Spring Cache** backed by **Caffeine**
-- Cache key: `prompt + "_" + count`
+- Cache key: `emotion + "_" + mediaType` (e.g., `joy_ALBUMS`)
 - Expiration: **10 minutes**
 - Maximum entries: **100**
 
